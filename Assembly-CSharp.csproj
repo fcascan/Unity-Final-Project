@@ -56,31 +56,36 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Animation\Scripts\EndParamBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerAttack.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\Fire Warrior\FireWarriorCameraFollow.cs" />
+    <Compile Include="Assets\Scripts\Fire Warrior\FireWarriorAttack.cs" />
+    <Compile Include="Assets\Scripts\FrameRateLimit.cs" />
     <Compile Include="Assets\Input\PlayerInputActions.cs" />
-    <Compile Include="Assets\Scripts\Player\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\Player\CharacterController2D.cs" />
     <Compile Include="Assets\Examples\Hero Knight - Pixel Art\Demo\HeroKnight.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerHealthSystem.cs" />
+    <Compile Include="Assets\Scripts\Fire Warrior\FireWarriorHealthSystem.cs" />
     <Compile Include="Assets\Scripts\Enemies\ThrowableProjectile.cs" />
     <Compile Include="Assets\Scripts\KillZone.cs" />
     <Compile Include="Assets\Animation\Scripts\JumpStateBehaviour.cs" />
     <Compile Include="Assets\Examples\Hero Knight - Pixel Art\ColorSwap\ColorSwap_HeroKnight.cs" />
     <Compile Include="Assets\Scripts\Enemies\Ally.cs" />
-    <Compile Include="Assets\Scripts\Player\ThrowableWeapon.cs" />
     <Compile Include="Assets\Examples\Bandits - Pixel Art\Demo\Bandit.cs" />
+    <Compile Include="Assets\Scripts\Player\CameraFollow.cs" />
     <Compile Include="Assets\Examples\Hero Knight - Pixel Art\Demo\Sensor_HeroKnight.cs" />
-    <Compile Include="Assets\Scripts\Player\CharacterController2D.cs" />
     <Compile Include="Assets\Examples\Bandits - Pixel Art\Demo\Sensor_Bandit.cs" />
+    <Compile Include="Assets\Scripts\Player\ThrowableWeapon.cs" />
+    <Compile Include="Assets\Scripts\Fire Warrior\FireWarriorController2D.cs" />
     <Compile Include="Assets\Scripts\Enemies\Enemy.cs" />
     <Compile Include="Assets\Scripts\Environment\Grass.cs" />
     <Compile Include="Assets\Scripts\Environment\DestructibleObject.cs" />
+    <Compile Include="Assets\Scripts\Player\Attack.cs" />
+    <Compile Include="Assets\Scripts\Fire Warrior\FireWarriorMovement.cs" />
     <Compile Include="Assets\Animation\Scripts\PlaySoundBehaviour.cs" />
     <Compile Include="Assets\Examples\NotInvited\VersionFromGitCore\Scripts\Utils\DateTimeUtils.cs" />
+    <Compile Include="Assets\Scripts\Fire Warrior\FireWarriorThrowableWeapon.cs" />
     <Compile Include="Assets\Examples\Hero Knight - Pixel Art\Demo\DestroyEvent_HeroKnight.cs" />
     <Compile Include="Assets\Examples\PSD Logo Templates\Sample\IconPreview.cs" />
-    <Compile Include="Assets\Scripts\FrameRateLimit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Examples\Bringer Of Death\License.txt" />
@@ -340,6 +345,9 @@
     <Reference Include="UnityEditor.UnityConnectModule">
       <HintPath>C:\Program Files\Unity 2021.3.25f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Collections.LowLevel.ILSupport">
+      <HintPath>Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Burst.Unsafe">
       <HintPath>Library\PackageCache\com.unity.burst@1.6.6\Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
@@ -357,9 +365,6 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.8.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Collections.LowLevel.ILSupport">
-      <HintPath>Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity 2021.3.25f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
@@ -733,9 +738,6 @@
     <Reference Include="Unity.2D.Tilemap.Extras">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.Animation.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.InternalAPIEngineBridge.001">
       <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll</HintPath>
     </Reference>
@@ -747,6 +749,9 @@
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Animation.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
     </Reference>
     <Reference Include="PsdPlugin">
       <HintPath>Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
@@ -850,6 +855,9 @@
     <Reference Include="Unity.2D.SpriteShape.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Collections">
+      <HintPath>Library\ScriptAssemblies\Unity.Collections.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Common.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
     </Reference>
@@ -858,9 +866,6 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.State">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Collections">
-      <HintPath>Library\ScriptAssemblies\Unity.Collections.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

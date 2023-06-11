@@ -40,9 +40,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4660076192433278}
-  - component: {fileID: 114231493902538710}
-  - component: {fileID: 114435281327171648}
-  - component: {fileID: 114145887554720856}
+  - component: {fileID: 7697324360090790782}
+  - component: {fileID: 7495287498852453917}
+  - component: {fileID: 4877606612405721484}
   - component: {fileID: 212971026275759962}
   - component: {fileID: 95975118031919256}
   - component: {fileID: 50738830109512580}
@@ -75,7 +75,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114231493902538710
+--- !u!114 &7697324360090790782
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -84,30 +84,47 @@ MonoBehaviour:
   m_GameObject: {fileID: 1377240496476148}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 783f8b7882d2d2a42a5b76de9179978f, type: 3}
+  m_Script: {fileID: 11500000, guid: c7d68b3fbf90c2a4cb1a4523e080136c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 850
-  m_MovementSmoothing: 0.05
+  dmgValue: 4
+  throwableObject: {fileID: 5532974359214069763, guid: 340067e8e5a097546ad175f1d00a6ece, type: 3}
+  attackCheck: {fileID: 4370582630649528}
+  animator: {fileID: 95975118031919256}
+  canAttack: 1
+  isTimeToCheck: 0
+  cam: {fileID: 1025145325119744, guid: d975e66254b08984ab50d4c39dcb947f, type: 3}
+--- !u!114 &7495287498852453917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377240496476148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc65fc1bb942f54aa65c84f94f8ee1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_JumpForce: 800
+  m_MovementSmoothing: 0.06
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 53
   m_GroundCheck: {fileID: 4291727345091452}
   m_WallCheck: {fileID: 4986330650710208}
-  limitFallSpeed: 25
-  wallSlidingSpeed: -1.5
-  canDoubleJump: 0
+  canDoubleJump: 1
   m_DashForce: 25
   life: 10
   invincible: 0
-  particleJumpUp: {fileID: 198584872278178884}
-  particleJumpDown: {fileID: 198967111524372206}
+  particleJumpUp: {fileID: 198967111524372206}
+  particleJumpDown: {fileID: 198584872278178884}
   OnFallEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114145887554720856}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 4877606612405721484}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: OnFall
         m_Mode: 1
         m_Arguments:
@@ -121,8 +138,8 @@ MonoBehaviour:
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114145887554720856}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 4877606612405721484}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: OnLanding
         m_Mode: 1
         m_Arguments:
@@ -133,7 +150,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &114435281327171648
+--- !u!114 &4877606612405721484
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,30 +159,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1377240496476148}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9955788a5eaffa49a9297f38eaa6202, type: 3}
+  m_Script: {fileID: 11500000, guid: 8e42ec5fb20fa854d8ede4fc9181d9f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmgValue: 4
-  attackCooldownSecs: 0.25
-  throwableObject: {fileID: 5532974359214069763, guid: 340067e8e5a097546ad175f1d00a6ece, type: 3}
-  attackCheck: {fileID: 4370582630649528}
-  animator: {fileID: 95975118031919256}
-  canAttack: 1
-  isTimeToCheck: 0
-  cam: {fileID: 0}
---- !u!114 &114145887554720856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1377240496476148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8644d33345e77614ba3ace9c18398d0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 114231493902538710}
+  controller: {fileID: 7495287498852453917}
   animator: {fileID: 95975118031919256}
   runSpeed: 40
 --- !u!212 &212971026275759962
@@ -206,8 +203,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1108522491
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 96be36fcbc69e8944b5d9f089bc07112, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

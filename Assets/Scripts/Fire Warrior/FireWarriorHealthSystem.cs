@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealthSystem : MonoBehaviour {
+public class FireWarriorHealthSystem : MonoBehaviour {
     public event Action<float> Damaged = delegate { };
     public event Action<float> Healed = delegate { };
     public event Action Killed = delegate { };

@@ -3,21 +3,22 @@ using UnityEngine.Events;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class CharacterController2D : MonoBehaviour
+public class FireWarriorController2D : MonoBehaviour
 {
 	[SerializeField] private float m_JumpForce = 400f;							// Amount of force added when the player jumps.
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .06f;	// How much to smooth out the movement
 	[SerializeField] private bool m_AirControl = false;							// Whether or not a player can steer while jumping;
 	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
 	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
-	[SerializeField] private Transform m_WallCheck;								//Posicion que controla si el personaje toca una pared
+	[SerializeField] private Transform m_WallCheck;								// Posicion que controla si el personaje toca una pared
+    [SerializeField] private float limitFallSpeed = 25f;						// Limit fall speed
+	[SerializeField] private float wallSlidingSpeed = -1.5f;					// Sets sliding speed while sliding on wall (More negative = Faster)
 
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded.
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 velocity = Vector3.zero;
-	private float limitFallSpeed = 25f; // Limit fall speed
 
 	public bool canDoubleJump = true; //If player can double jump
 	[SerializeField] private float m_DashForce = 25f;
@@ -39,7 +40,7 @@ public class CharacterController2D : MonoBehaviour
 
 	private float jumpWallStartX = 0;
 	private float jumpWallDistX = 0; //Distance between player and wall
-	private bool limitVelOnWallJump = false; //For limit wall jump distance with low fps
+    private bool limitVelOnWallJump = false; //For limit wall jump distance with low fps
 
 	[Header("Events")]
 	[Space]
@@ -193,7 +194,7 @@ public class CharacterController2D : MonoBehaviour
 				{
 					isWallSliding = true;
 					m_WallCheck.localPosition = new Vector3(-m_WallCheck.localPosition.x, m_WallCheck.localPosition.y, 0);
-					Flip();
+					//Flip();
 					StartCoroutine(WaitToCheck(0.1f));
 					canDoubleJump = true;
 					animator.SetBool("IsWallSliding", true);
@@ -209,7 +210,7 @@ public class CharacterController2D : MonoBehaviour
 					else 
 					{
 						oldWallSlidding = true;
-						m_Rigidbody2D.velocity = new Vector2(-transform.localScale.x * 2, -5);
+						m_Rigidbody2D.velocity = new Vector2(-transform.localScale.x * 2, wallSlidingSpeed);
 					}
 				}
 
@@ -334,7 +335,7 @@ public class CharacterController2D : MonoBehaviour
 		animator.SetBool("IsDead", true);
 		canMove = false;
 		invincible = true;
-		GetComponent<Attack>().enabled = false;
+		GetComponent<FireWarriorAttack>().enabled = false;
 		yield return new WaitForSeconds(0.4f);
 		m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
 		yield return new WaitForSeconds(1.1f);

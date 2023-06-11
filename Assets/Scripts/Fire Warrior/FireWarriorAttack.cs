@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerAttack : MonoBehaviour {
+public class FireWarriorAttack : MonoBehaviour {
     private PlayerInputActions playerControls;
     private Rigidbody2D m_Rigidbody2D;
 
@@ -56,7 +56,7 @@ public class PlayerAttack : MonoBehaviour {
         if(playerControls.Player.Shoot.triggered) {
 			GameObject throwableWeapon = Instantiate(throwableObject, transform.position + new Vector3(transform.localScale.x * 0.5f,-0.2f), Quaternion.identity) as GameObject; 
 			Vector2 direction = new Vector2(transform.localScale.x, 0);
-			throwableWeapon.GetComponent<ThrowableWeapon>().direction = direction; 
+			throwableWeapon.GetComponent<FireWarriorThrowableWeapon>().direction = direction; 
 			throwableWeapon.name = "ThrowableWeapon";
 		}
 	}
