@@ -1,36 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour {
-
+	//Config:
+	private PlayerInputActions playerControls;
 	public CharacterController2D controller;
 	public Animator animator;
 
-	public float runSpeed = 40f;
+    [SerializeField] private float runSpeed = 40f;
 
-	float horizontalMove = 0f;
-	bool jump = false;
-	bool dash = false;
-
+	//States:
+	private float horizontalMove = 0f;
+	private bool isJumping = false;
+	private bool isDashing = false;
 	//bool dashAxis = false;
-	
-	// Update is called once per frame
-	void Update () {
 
-		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+    private void Awake() {
+        playerControls = new PlayerInputActions();
+    }
 
+    private void OnEnable() {
+        playerControls.Player.Move.Enable();
+		playerControls.Player.Jump.Enable();
+		playerControls.Player.Dash.Enable();
+    }
+
+    private void OnDisable() {
+        playerControls.Player.Move.Disable();
+        playerControls.Player.Jump.Disable();
+        playerControls.Player.Dash.Disable();
+    }
+
+    // Update is called once per frame
+    void Update () {
+		horizontalMove = playerControls.Player.Move.ReadValue<Vector2>().x * runSpeed;	//Input.GetAxisRaw("Horizontal") * runSpeed;
 		animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			jump = true;
-		}
-
-		if (Input.GetKeyDown(KeyCode.E))
-		{
-			dash = true;
-		}
+		isJumping = playerControls.Player.Jump.triggered;   // if (Input.GetKeyDown(KeyCode.Space)) { jump = true; }
+        isDashing = playerControls.Player.Dash.triggered;	// if (Input.GetKeyDown(KeyCode.E)) { dash = true; }
 
 		/*if (Input.GetAxisRaw("Dash") == 1 || Input.GetAxisRaw("Dash") == -1) //RT in Unity 2017 = -1, RT in Unity 2019 = 1
 		{
@@ -45,24 +55,20 @@ public class PlayerMovement : MonoBehaviour {
 			dashAxis = false;
 		}
 		*/
-
 	}
 
-	public void OnFall()
-	{
+	public void OnFall() {
 		animator.SetBool("IsJumping", true);
 	}
 
-	public void OnLanding()
-	{
+	public void OnLanding() {
 		animator.SetBool("IsJumping", false);
 	}
 
-	void FixedUpdate ()
-	{
+	void FixedUpdate ()	{
 		// Move our character
-		controller.Move(horizontalMove * Time.fixedDeltaTime, jump, dash);
-		jump = false;
-		dash = false;
+		controller.Move(horizontalMove * Time.fixedDeltaTime, isJumping, isDashing);
+        isJumping = false;
+        isDashing = false;
 	}
 }
