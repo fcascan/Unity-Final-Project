@@ -51,3 +51,6 @@ TagManager:
   - name: Front
     uniqueID: 3186444805
     locked: 0
+  - name: FarBackground
+    uniqueID: 2446405037
+    locked: 0
