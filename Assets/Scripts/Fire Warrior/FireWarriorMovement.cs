@@ -36,11 +36,11 @@ public class FireWarriorMovement : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		horizontalMove = playerControls.Player.Move.ReadValue<Vector2>().x * runSpeed;	//Input.GetAxisRaw("Horizontal") * runSpeed;
-		animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+		// horizontalMove = playerControls.Player.Move.ReadValue<Vector2>().x * runSpeed;	//Input.GetAxisRaw("Horizontal") * runSpeed;
+		// animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
-		isJumping = playerControls.Player.Jump.triggered;   // if (Input.GetKeyDown(KeyCode.Space)) { jump = true; }
-        isDashing = playerControls.Player.Dash.triggered;	// if (Input.GetKeyDown(KeyCode.E)) { dash = true; }
+		// isJumping = playerControls.Player.Jump.triggered;   // if (Input.GetKeyDown(KeyCode.Space)) { jump = true; }
+        // isDashing = playerControls.Player.Dash.triggered;	// if (Input.GetKeyDown(KeyCode.E)) { dash = true; }
 
 		/*if (Input.GetAxisRaw("Dash") == 1 || Input.GetAxisRaw("Dash") == -1) //RT in Unity 2017 = -1, RT in Unity 2019 = 1
 		{
@@ -70,5 +70,25 @@ public class FireWarriorMovement : MonoBehaviour {
 		controller.Move(horizontalMove * Time.fixedDeltaTime, isJumping, isDashing);
         isJumping = false;
         isDashing = false;
-	}
+        horizontalMove = playerControls.Player.Move.ReadValue<Vector2>().x * runSpeed;  //Input.GetAxisRaw("Horizontal") * runSpeed;
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+
+        isJumping = playerControls.Player.Jump.triggered;   // if (Input.GetKeyDown(KeyCode.Space)) { jump = true; }
+        isDashing = playerControls.Player.Dash.triggered;   // if (Input.GetKeyDown(KeyCode.E)) { dash = true; }
+
+        /*if (Input.GetAxisRaw("Dash") == 1 || Input.GetAxisRaw("Dash") == -1) //RT in Unity 2017 = -1, RT in Unity 2019 = 1
+		{
+			if (dashAxis == false)
+			{
+				dashAxis = true;
+				dash = true;
+			}
+		}
+		else
+		{
+			dashAxis = false;
+		}
+		*/
+
+    }
 }
