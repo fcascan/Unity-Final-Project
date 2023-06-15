@@ -12,8 +12,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Terreno front
+  - Terreno Back
   - 
   - 
   - 
@@ -41,6 +41,12 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Terreno Back
+    uniqueID: 3609524387
+    locked: 0
+  - name: Terreno front
+    uniqueID: 3068887425
     locked: 0
   - name: Background
     uniqueID: 3668981217
