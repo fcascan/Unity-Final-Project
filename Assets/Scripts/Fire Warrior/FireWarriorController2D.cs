@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class FireWarriorController2D : MonoBehaviour
 {
-	[SerializeField] private float m_JumpForce = 400f;							// Amount of force added when the player jumps.
+	[SerializeField] private float m_JumpForce = 650f;							// Amount of force added when the player jumps.
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .06f;	// How much to smooth out the movement
 	[SerializeField] private bool m_AirControl = false;							// Whether or not a player can steer while jumping;
 	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
@@ -194,7 +194,7 @@ public class FireWarriorController2D : MonoBehaviour
 				{
 					isWallSliding = true;
 					m_WallCheck.localPosition = new Vector3(-m_WallCheck.localPosition.x, m_WallCheck.localPosition.y, 0);
-					//Flip();
+					Flip();
 					StartCoroutine(WaitToCheck(0.1f));
 					canDoubleJump = true;
 					animator.SetBool("IsWallSliding", true);

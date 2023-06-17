@@ -1,0 +1,29 @@
+﻿<Properties StartupConfiguration="{2C578A57-2215-9F73-B115-AE97A68AF5C5}|">
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Unity-Final-Project" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Animation" expanded="True">
+                <Node name="Scripts" expanded="True" />
+              </Node>
+              <Node name="Scripts" expanded="True">
+                <Node name="Fire Warrior" expanded="True">
+                  <Node name="FireWarriorMovement.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="965a738e-4fe1-4cf5-ae12-fcc2adac00d2" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+</Properties>
