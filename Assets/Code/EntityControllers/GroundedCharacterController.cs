@@ -156,9 +156,9 @@ public class GroundedCharacterController : CharacterControllerBase
                 Vector2 jumpDirection = Vector2.Lerp(Vector2.up, m_LastGroundedNormal, m_JumpAlignedToGroundFactor).normalized;
                 Vector2 currentWalkDirection = m_ControlledCollider.GetGroundedInfo().GetWalkDirection(currentVelocity);
                 float speedDot = Vector2.Dot(currentVelocity, currentWalkDirection.normalized);
-                Vector2 jumpVel = m_JumpVelocity * jumpDirection + currentWalkDirection.normalized * speedDot * m_HorizontalJumpBoostFactor;
+                Vector2 jumpVel = m_JumpVelocity * jumpDirection + currentWalkDirection.normalized * m_HorizontalJumpBoostFactor;
 
-                Vector2 newVelocity = currentVelocity + jumpVel;
+                Vector2 newVelocity = jumpVel;
                 Jump(newVelocity);
                 return true;
             }
