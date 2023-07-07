@@ -32,7 +32,7 @@ public class FireWarriorMovement : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		isJumping = playerControls.Player.Jump.triggered;
+
 	}
 
 	public void OnFall() {
@@ -44,6 +44,7 @@ public class FireWarriorMovement : MonoBehaviour {
 	}
 
 	void FixedUpdate ()	{
+		isJumping = playerControls.Player.Jump.triggered;
 		horizontalMove = playerControls.Player.Move.ReadValue<Vector2>().x * runSpeed;
 		animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 		isDashing = playerControls.Player.Dash.triggered;

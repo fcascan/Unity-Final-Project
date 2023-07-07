@@ -6,7 +6,28 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Main Menu/MainMenu.unity
+    guid: c69f2b40b6a2c144ab8fc841dc0cf156
+  - enabled: 1
+    path: Assets/Scenes/Main Menu/ScreenSettingsScene.unity
+    guid: 06567ecbb46499a488086984db031251
+  - enabled: 1
+    path: Assets/Scenes/Main Menu/SettingsScene.unity
+    guid: d39d05d306950224cb192ad3f437fbb3
+  - enabled: 1
+    path: Assets/Scenes/Main Menu/SoundSettingsScene.unity
+    guid: 11972d420b9d2404a8a47cf77b47f1e4
+  - enabled: 1
+    path: Assets/Scenes/Main Menu/CreditsScene.unity
+    guid: 2bc4fdcd33e462642bc954b7e1ee239b
+  - enabled: 1
+    path: Assets/Scenes/Main Menu/LoadingMenu.unity
+    guid: 4a43b564cd755674d958392c4a3776d3
+  - enabled: 1
+    path: Assets/Scenes/Main Menu/GameOver.unity
+    guid: 9ff0af770dc346a468a7f1512c8d6777
+  - enabled: 1
+    path: Assets/Scenes/Level 1.unity
+    guid: aa7dcbc5a5c1b473ea87c64c345f90dd
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: a571d13f7a405404780076ad80280667, type: 2}
