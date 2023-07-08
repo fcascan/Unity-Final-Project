@@ -827,9 +827,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 52444001}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3307,7 +3307,7 @@ GameObject:
   - component: {fileID: 1465865424}
   - component: {fileID: 1465865423}
   m_Layer: 5
-  m_Name: Volume
+  m_Name: GeneralVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3515,9 +3515,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1312020479}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3877,7 +3877,7 @@ GameObject:
   - component: {fileID: 2038458589}
   - component: {fileID: 2038458590}
   m_Layer: 5
-  m_Name: SliderVolume
+  m_Name: SliderGeneralVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3951,14 +3951,14 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1556245149}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 11500000, guid: 0320abbd269fefa4180e5085509c59b4, type: 3}
+        m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
         m_MethodName: 
         m_Mode: 1
         m_Arguments:

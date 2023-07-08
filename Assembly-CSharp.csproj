@@ -58,7 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
-    <Compile Include="Assets\Scripts\MainMenu\SoundSettingsScene.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\AudioConfiguration.cs" />
     <Compile Include="Assets\boclodider.cs" />
     <Compile Include="Assets\Animation\Scripts\EndParamBehaviour.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class ButtonSound : MonoBehaviour
 {
     public AudioClip buttonClickSound;
@@ -15,16 +16,19 @@ public class ButtonSound : MonoBehaviour
         button = GetComponent<Button>();
         audioSource = GetComponent<AudioSource>();
 
-        if (button != null && buttonClickSound != null)
+        if (button != null)
         {
-            audioSource.clip = buttonClickSound;
             button.onClick.AddListener(PlayButtonClickSound);
         }
     }
 
     private void PlayButtonClickSound()
     {
-        audioSource.PlayOneShot(buttonClickSound);
+        if (buttonClickSound != null)
+        {
+            audioSource.PlayOneShot(buttonClickSound);
+        }
     }
 }
+
 
