@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 6638292316667859330}
   m_Layer: 0
   m_Name: Pinchos_1
-  m_TagString: Untagged
+  m_TagString: Pinchos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1258329760394744096
 Transform:
