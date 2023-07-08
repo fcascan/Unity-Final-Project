@@ -84,6 +84,7 @@
     <Compile Include="Assets\Animation\Scripts\JumpStateBehaviour.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\ButtonSound.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\Examples\Hero Knight - Pixel Art\ColorSwap\ColorSwap_HeroKnight.cs" />
     <Compile Include="Assets\Scripts\Enemies\Ally.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Assets\Scripts\Player\Attack.cs" />
     <Compile Include="Assets\Scripts\Fire Warrior\FireWarriorMovement.cs" />
     <Compile Include="Assets\Animation\Scripts\PlaySoundBehaviour.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\LoadingScreen.cs" />
     <Compile Include="Assets\Examples\NotInvited\VersionFromGitCore\Scripts\Utils\DateTimeUtils.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\Scripts\MainMenu\ScreenSettings.cs" />
