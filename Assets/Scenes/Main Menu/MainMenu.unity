@@ -2557,6 +2557,7 @@ GameObject:
   - component: {fileID: 1190731621}
   - component: {fileID: 1190731620}
   - component: {fileID: 1190731622}
+  - component: {fileID: 1190731623}
   m_Layer: 7
   m_Name: BackgroundMusic
   m_TagString: Untagged
@@ -2573,7 +2574,7 @@ AudioSource:
   m_GameObject: {fileID: 1190731619}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 2131953162491327161, guid: f9529d42085bc5c43abb0d509f2f60a0, type: 2}
+  OutputAudioMixerGroup: {fileID: 2131953162491327161, guid: 77a3dd37f38a6c8428aeda96f7af6a3e, type: 2}
   m_audioClip: {fileID: 8300000, guid: 662226e8f915e8247bb19f52c8474827, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -2684,6 +2685,18 @@ MonoBehaviour:
   - SettingsScene
   - SoundSettingsScene
   instanceName: MusicaMenu
+--- !u!114 &1190731623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190731619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c77226a8c317874db8ed784686da681, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1255655250
 GameObject:
   m_ObjectHideFlags: 0
