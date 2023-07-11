@@ -130,8 +130,15 @@ public class FireWarriorController2D : MonoBehaviour
 		}
 	}
 
+    public void Kill()
+    {
+        // Lógica para cuando el personaje muere
+        gameObject.SetActive(false);
 
-	public void Move(float move, bool jump, bool dash)
+        // Mostrar la escena de "GameOver"
+        SceneManager.LoadScene("GameOver");
+    }
+    public void Move(float move, bool jump, bool dash)
 	{
 		if (canMove) {
 			if (dash && canDash && !isWallSliding)
