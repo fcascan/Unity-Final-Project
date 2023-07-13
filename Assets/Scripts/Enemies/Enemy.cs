@@ -14,58 +14,93 @@ public class Enemy : MonoBehaviour {
 	private bool facingRight = true;
 	
 	public float speed = 5f;
+    public float rangeDist = 5f;
+    public float meleeDist = 1.5f;
 
-	public bool isInvincible = false;
+    public bool isInvincible = false;
 	private bool isHitted = false;
 
-	void Awake () {
-		fallCheck = transform.Find("FallCheck");
-		wallCheck = transform.Find("WallCheck");
-		rb = GetComponent<Rigidbody2D>();
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
 
-		if (life <= 0) {
-			transform.GetComponent<Animator>().SetBool("IsDead", true);
-			StartCoroutine(DestroyEnemy());
-		}
+    public GameObject player;
 
-		isPlat = Physics2D.OverlapCircle(fallCheck.position, .2f, 1 << LayerMask.NameToLayer("Default"));
-		isObstacle = Physics2D.OverlapCircle(wallCheck.position, .2f, turnLayerMask);
+    void Awake()
+    {
+        fallCheck = transform.Find("FallCheck");
+        wallCheck = transform.Find("WallCheck");
+        rb = GetComponent<Rigidbody2D>();
+    }
 
-		if (!isHitted && life > 0 && Mathf.Abs(rb.velocity.y) < 0.5f)
-		{
-			if (isPlat && !isObstacle && !isHitted)
-			{
-				if (facingRight)
-				{
-					rb.velocity = new Vector2(-speed, rb.velocity.y);
-				}
-				else
-				{
-					rb.velocity = new Vector2(speed, rb.velocity.y);
-				}
-			}
-			else
-			{
-				Flip();
-			}
-		}
-	}
+    void FixedUpdate()
+    {
+        if (life <= 0)
+        {
+            transform.GetComponent<Animator>().SetBool("IsDead", true);
+            StartCoroutine(DestroyEnemy());
+            return; // Salir del método si el enemigo está muerto
+        }
 
-	void Flip (){
-		// Switch the way the player is labelled as facing.
-		facingRight = !facingRight;
-		
-		// Multiply the player's x local scale by -1.
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
-	}
+        isPlat = Physics2D.OverlapCircle(fallCheck.position, .2f, 1 << LayerMask.NameToLayer("Default"));
+        isObstacle = Physics2D.OverlapCircle(wallCheck.position, .2f, turnLayerMask);
 
-	public void ApplyDamage(float damage) {
+        if (!isHitted && life > 0 && Mathf.Abs(rb.velocity.y) < 0.5f)
+        {
+            if (player != null)
+            {
+                float distToPlayer = player.transform.position.x - transform.position.x;
+
+                // Verificar la distancia al jugador para decidir el comportamiento
+                if (Mathf.Abs(distToPlayer) < rangeDist)
+                {
+                    // Dentro del rango de persecución
+                    if (Mathf.Abs(distToPlayer) > meleeDist)
+                    {
+                        // Moverse hacia el jugador
+                        if (facingRight)
+                        {
+                            rb.velocity = new Vector2(speed, rb.velocity.y);
+                        }
+                        else
+                        {
+                            rb.velocity = new Vector2(-speed, rb.velocity.y);
+                        }
+                    }
+                    else
+                    {
+                        // Dentro del rango de ataque cuerpo a cuerpo
+                        rb.velocity = new Vector2(0f, rb.velocity.y);
+                        // Agregar lógica de ataque aquí
+                    }
+                }
+                else
+                {
+                    // Fuera del rango de persecución, realizar idle
+                    rb.velocity = new Vector2(0f, rb.velocity.y);
+                    // Agregar lógica de idle aquí
+                }
+
+                // Cambiar la dirección del enemigo según la posición del jugador
+                if (distToPlayer > 0f && !facingRight)
+                {
+                    Flip();
+                }
+                else if (distToPlayer < 0f && facingRight)
+                {
+                    Flip();
+                }
+            }
+        }
+    }
+
+    void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+    }
+
+
+    public void ApplyDamage(float damage) {
 		if (!isInvincible) 
 		{
 			float direction = damage / Mathf.Abs(damage);

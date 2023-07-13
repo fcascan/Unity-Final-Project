@@ -9,7 +9,9 @@ public class Ally : MonoBehaviour
 
 	public float life = 10;
 
-	private bool facingRight = true;
+    [SerializeField] public float maxFollowDistance = 10f; // Distancia máxima a la cual el enemigo se acerca al jugador
+
+    private bool facingRight = true;
 
 	public float speed = 5f; 
 
@@ -77,12 +79,13 @@ public class Ally : MonoBehaviour
 						MeleeAttack();
 					}
 				}
-				else if (Mathf.Abs(distToPlayer) > meleeDist && Mathf.Abs(distToPlayer) < rangeDist)
-				{
-					anim.SetBool("IsWaiting", false);
-					m_Rigidbody2D.velocity = new Vector2(distToPlayer / Mathf.Abs(distToPlayer) * speed, m_Rigidbody2D.velocity.y);
-				}
-				else
+                else if (Mathf.Abs(distToPlayer) <= maxFollowDistance && Mathf.Abs(distToPlayer) > meleeDist && Mathf.Abs(distToPlayerY) < 2f)
+                {
+                    // Estás dentro de la distancia máxima de seguimiento, acércate al jugador
+                    anim.SetBool("IsWaiting", false);
+                    m_Rigidbody2D.velocity = new Vector2(distToPlayer / Mathf.Abs(distToPlayer) * speed, m_Rigidbody2D.velocity.y);
+                }
+                else
 				{
 					if (!endDecision)
 					{
