@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Pinchos
   - Humo salto
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -40,8 +41,8 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
+  - name: FarBackground
+    uniqueID: 2446405037
     locked: 0
   - name: Terreno Back
     uniqueID: 3609524387
@@ -58,6 +59,6 @@ TagManager:
   - name: Front
     uniqueID: 3186444805
     locked: 0
-  - name: FarBackground
-    uniqueID: 2446405037
+  - name: Default
+    uniqueID: 0
     locked: 0
