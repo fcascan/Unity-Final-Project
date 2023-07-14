@@ -52,9 +52,9 @@ public class FireWarriorAttack : MonoBehaviour {
 			if(attackNumber % 3 == 0) attackNumber = 0;
 			StartCoroutine(AttackCooldown());
 		}
-
-        if(playerControls.Player.Shoot.triggered) {
-			GameObject throwableWeapon = Instantiate(throwableObject, transform.position + new Vector3(transform.localScale.x * 0.5f,-0.2f), Quaternion.identity) as GameObject; 
+		//playerControls.Player.Shoot.triggered
+		if (Input.GetKeyDown(KeyCode.Q)) {
+			GameObject throwableWeapon = Instantiate(throwableObject, transform.position + new Vector3(transform.localScale.x * 0.2f,0.35f), Quaternion.identity) as GameObject; 
 			Vector2 direction = new Vector2(transform.localScale.x, 0);
 			throwableWeapon.GetComponent<FireWarriorThrowableWeapon>().direction = direction; 
 			throwableWeapon.name = "ThrowableWeapon";
