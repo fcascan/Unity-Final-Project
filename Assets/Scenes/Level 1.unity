@@ -3624,6 +3624,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1620716113202630, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1620716113202630, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: m_TagString
       value: Humo salto
       objectReference: {fileID: 0}
@@ -3865,7 +3869,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198584872278178884, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: lengthInSec
-      value: 0.25
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 198584872278178884, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 198584872278178884, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: InitialModule.startColor.minMaxState
@@ -3875,6 +3883,10 @@ PrefabInstance:
       propertyPath: InitialModule.startColor.minMaxState
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 198967111524372206, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
+      propertyPath: InitialModule.startColor.maxGradient.key0.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 199702487371442802, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: m_SortingLayer
       value: -3
@@ -3889,7 +3901,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 199720515671813628, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: m_SortingLayer
-      value: -3
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 199720515671813628, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: m_SortingOrder
@@ -3897,7 +3909,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 199720515671813628, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: m_SortingLayerID
-      value: -625986079
+      value: -1848562259
       objectReference: {fileID: 0}
     - target: {fileID: 212971026275759962, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: m_Color.b

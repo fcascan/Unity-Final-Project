@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -5674343527186248477}
   - component: {fileID: -5332101554523094584}
   - component: {fileID: 95058516800801434}
+  - component: {fileID: 7152574282473709177}
   m_Layer: 0
   m_Name: fireThrowable
   m_TagString: Untagged
@@ -118,7 +119,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0.15
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -139,3 +140,15 @@ MonoBehaviour:
   direction: {x: 0, y: 400}
   hasHit: 0
   speed: 10
+--- !u!114 &7152574282473709177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535525738587269508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c66c8e05fde8a794fa07d7bc19497103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
