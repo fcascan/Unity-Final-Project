@@ -200,16 +200,16 @@ public class FireWarriorController2D : MonoBehaviour
 				{
 					isWallSliding = true;
 					m_WallCheck.localPosition = new Vector3(-m_WallCheck.localPosition.x, m_WallCheck.localPosition.y, 0);
-					Flip();
-					StartCoroutine(WaitToCheck(0.1f));
+                    Flip();
+                    StartCoroutine(WaitToCheck(0.1f));
 					canDoubleJump = true;
 					animator.SetBool("IsWallSliding", true);
-				}
+                }
 				isDashing = false;
 
 				if (isWallSliding)
 				{
-					if (move * transform.localScale.x > 0.1f)
+                    if (move * transform.localScale.x > 0.1f)
 					{
 						StartCoroutine(WaitToEndSliding());
 					}
@@ -247,7 +247,7 @@ public class FireWarriorController2D : MonoBehaviour
 			}
 			else if (isWallSliding && !m_IsWall && canCheck) 
 			{
-				isWallSliding = false;
+                isWallSliding = false;
 				animator.SetBool("IsWallSliding", false);
 				oldWallSlidding = false;
 				m_WallCheck.localPosition = new Vector3(Mathf.Abs(m_WallCheck.localPosition.x), m_WallCheck.localPosition.y, 0);
