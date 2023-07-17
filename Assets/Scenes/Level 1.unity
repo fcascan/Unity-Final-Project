@@ -4437,7 +4437,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: hola
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4526,6 +4526,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43fbc7d1ed0c72d44b3455d5961f7386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingTime: 60
+  minTimeToAdd: 5
+  maxTimeToAdd: 20
+  timeText: {fileID: 0}
 --- !u!1001 &1292206330
 PrefabInstance:
   m_ObjectHideFlags: 0
