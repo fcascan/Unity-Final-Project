@@ -3,8 +3,8 @@ using UnityEngine;
 public class EnemyDropItem : MonoBehaviour
 {
     public GameObject itemPrefab; // Prefabricado del item a soltar
-    public float minTimeToAdd = 5f; // Tiempo mínimo a agregar al recoger el item
-    public float maxTimeToAdd = 20f; // Tiempo máximo a agregar al recoger el item
+    public int minTimeToAdd = 5; // Tiempo mínimo a agregar al recoger el item
+    public int maxTimeToAdd = 20; // Tiempo máximo a agregar al recoger el item
 
     private void OnDestroy()
     {
