@@ -1,13 +1,11 @@
-using System.Collections;
-using Unity.VisualScripting;
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using System;
+using UnityEngine;
+using TMPro;
 
 public class TimeManager : MonoBehaviour
 {
     public event Action<float> TimeAdded; // Evento que se dispara cuando se agrega tiempo
+    public event Action TimeReset; // Evento que se dispara cuando el tiempo se resetea a 60
 
     public float startingTime = 60f; // Tiempo inicial en segundos
     private TextMeshProUGUI timeText; // Referencia al componente Text para mostrar el tiempo restante
@@ -18,7 +16,7 @@ public class TimeManager : MonoBehaviour
     {
         // Inicializar el tiempo actual desde PlayerPrefs o el valor predeterminado
         currentTime = PlayerPrefs.GetFloat("Time", startingTime);
-        if (currentTime < startingTime)
+        if (currentTime < 1)
         {
             currentTime = startingTime;
         }
@@ -40,6 +38,9 @@ public class TimeManager : MonoBehaviour
             {
                 // Llamar al método Kill del componente FireWarriorController2D
                 controller.Kill();
+
+                // Resetear el tiempo a 60
+                ResetTime();
             }
         }
 
@@ -52,6 +53,14 @@ public class TimeManager : MonoBehaviour
 
         // Disparar el evento TimeAdded con el valor de tiempo agregado
         TimeAdded?.Invoke(timeToAdd);
+    }
+
+    public void ResetTime()
+    {
+        currentTime = startingTime;
+
+        // Disparar el evento TimeReset
+        TimeReset?.Invoke();
     }
 
     private void UpdateTimeText()

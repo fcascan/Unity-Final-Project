@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System;
 
 public class FireWarriorController2D : MonoBehaviour
 {
@@ -12,9 +13,9 @@ public class FireWarriorController2D : MonoBehaviour
 	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
 	[SerializeField] private Transform m_WallCheck;								// Posicion que controla si el personaje toca una pared
     [SerializeField] private float limitFallSpeed = 25f;						// Limit fall speed
-	[SerializeField] private float wallSlidingSpeed = -1.5f;					// Sets sliding speed while sliding on wall (More negative = Faster)
-
-	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
+	[SerializeField] private float wallSlidingSpeed = -1.5f;                    // Sets sliding speed while sliding on wall (More negative = Faster)
+    
+    const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded.
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
@@ -44,26 +45,31 @@ public class FireWarriorController2D : MonoBehaviour
 
 
 
-	public UnityEvent OnFallEvent;
-	public UnityEvent OnLandEvent;
+    public UnityEvent OnFallEvent;
+    public UnityEvent OnLandEvent;
+    public UnityEvent OnDeathEvent;
 
-	[System.Serializable]
+
+    [System.Serializable]
 	public class BoolEvent : UnityEvent<bool> { }
 
-	private void Awake()
-	{
-		m_Rigidbody2D = GetComponent<Rigidbody2D>();
-		animator = GetComponent<Animator>();
+    private void Awake()
+    {
+        m_Rigidbody2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
 
-		if (OnFallEvent == null)
-			OnFallEvent = new UnityEvent();
+        if (OnFallEvent == null)
+            OnFallEvent = new UnityEvent();
 
-		if (OnLandEvent == null)
-			OnLandEvent = new UnityEvent();
-	}
+        if (OnLandEvent == null)
+            OnLandEvent = new UnityEvent();
+
+        if (OnDeathEvent == null)
+            OnDeathEvent = new UnityEvent();
+    }
 
 
-	private void FixedUpdate()
+    private void FixedUpdate()
 	{
 		bool wasGrounded = m_Grounded;
 		m_Grounded = false;
@@ -132,8 +138,33 @@ public class FireWarriorController2D : MonoBehaviour
 
     public void Kill()
     {
-        // Lógica para cuando el personaje muere
-        gameObject.SetActive(false);
+        if (!invincible)
+        {
+            animator.SetBool("IsDead", true);
+            canMove = false;
+            invincible = true;
+            GetComponent<FireWarriorAttack>().enabled = false;
+
+            StartCoroutine(WaitForDeathAnimation());
+
+        }
+    }
+
+    IEnumerator WaitForDeathAnimation()
+    {
+
+        yield return new WaitForSeconds(0.4f);
+        m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
+	    yield return new WaitForSeconds(1.1f);
+
+        OnDeathEvent.Invoke(); // Disparar el evento de muerte
+
+        // Cuando muere tiene que tirar 0 tiempo
+        TimeManager timeManager = FindObjectOfType<TimeManager>();
+        if (timeManager != null)
+        {
+            timeManager.ResetTime();
+        }
 
         // Mostrar la escena de "GameOver"
         SceneManager.LoadScene("GameOver");
@@ -345,6 +376,8 @@ public class FireWarriorController2D : MonoBehaviour
 		yield return new WaitForSeconds(0.4f);
 		m_Rigidbody2D.velocity = new Vector2(0, m_Rigidbody2D.velocity.y);
 		yield return new WaitForSeconds(1.1f);
-		SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
-	}
+        //SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        // Mostrar la escena de "GameOver"
+        SceneManager.LoadSceneAsync("GameOver");
+    }
 }

@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ItemPickup : MonoBehaviour
 {
@@ -9,42 +9,20 @@ public class ItemPickup : MonoBehaviour
 
     private float timeToAdd; // Tiempo que se agrega al recoger el item
 
-    private GameObject tiempo;
-    private TimeManager timeManager;
-    private void Start()
-    {
-        tiempo = GameObject.FindGameObjectWithTag("Tiempo");
-        if (tiempo != null)
-        {
-            // Suscribirse al evento TimeAdded del TimeManager
-            timeManager = tiempo.GetComponent<TimeManager>;
-        }
-    }
+    public event Action<float> TimePickedUp; // Evento que se dispara cuando se recoje el ítem
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Choque");
-            // Obtener el componente TimeManager en el jugador
-            timeManager = other.GetComponent<TimeManager>();
-
-            // Agregar tiempo al jugador
-            // Generar un número aleatorio entre minTimeToAdd y maxTimeToAdd
-            timeToAdd = Random.Range(minTimeToAdd, maxTimeToAdd);
-            timeManager.AddTime(timeToAdd);
-
-            // Destruir el objeto del item
-            Debug.Log("Seek and destroy");
-            Destroy(this.gameObject);
+            TimeManager timeManager = FindObjectOfType<TimeManager>();
+            if (timeManager != null)
+            {
+                timeToAdd = Random.Range(minTimeToAdd, maxTimeToAdd);
+                timeManager.AddTime(timeToAdd);
+                TimePickedUp?.Invoke(timeToAdd);
+                Destroy(gameObject);
+            }
         }
-    }
-
-    private void HandleTimeAdded(float timeAdded)
-    {
-        // Aquí puedes realizar cualquier acción necesaria al agregar tiempo al jugador
-        Debug.Log("Time added to player: " + timeAdded);
-
-        // Resto del código aquí
     }
 }

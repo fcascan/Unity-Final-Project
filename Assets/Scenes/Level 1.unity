@@ -3732,30 +3732,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Humo salto
       objectReference: {fileID: 0}
-    - target: {fileID: 4202976304329374, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.3603
-      objectReference: {fileID: 0}
-    - target: {fileID: 4202976304329374, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.3603
-      objectReference: {fileID: 0}
-    - target: {fileID: 4202976304329374, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.3603
-      objectReference: {fileID: 0}
-    - target: {fileID: 4202976304329374, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.072
-      objectReference: {fileID: 0}
-    - target: {fileID: 4202976304329374, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.0070496053
-      objectReference: {fileID: 0}
-    - target: {fileID: 4202976304329374, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.0123
-      objectReference: {fileID: 0}
     - target: {fileID: 4291727345091452, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.3603
@@ -3801,30 +3777,6 @@ PrefabInstance:
       value: 0.2867504
       objectReference: {fileID: 0}
     - target: {fileID: 4370582630649528, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.0123
-      objectReference: {fileID: 0}
-    - target: {fileID: 4559817074117408, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.3603
-      objectReference: {fileID: 0}
-    - target: {fileID: 4559817074117408, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.3603
-      objectReference: {fileID: 0}
-    - target: {fileID: 4559817074117408, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.3603
-      objectReference: {fileID: 0}
-    - target: {fileID: 4559817074117408, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.072
-      objectReference: {fileID: 0}
-    - target: {fileID: 4559817074117408, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.0070496053
-      objectReference: {fileID: 0}
-    - target: {fileID: 4559817074117408, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.0123
       objectReference: {fileID: 0}
@@ -3969,24 +3921,8 @@ PrefabInstance:
       value: 53
       objectReference: {fileID: 0}
     - target: {fileID: 198584872278178884, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
-      propertyPath: lengthInSec
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 198584872278178884, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: ShapeModule.radius.value
       value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 198584872278178884, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
-      propertyPath: InitialModule.startColor.minMaxState
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 198967111524372206, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
-      propertyPath: InitialModule.startColor.minMaxState
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 198967111524372206, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
-      propertyPath: InitialModule.startColor.maxGradient.key0.b
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 199702487371442802, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
       propertyPath: m_SortingLayer
