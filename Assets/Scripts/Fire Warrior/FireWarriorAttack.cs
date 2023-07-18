@@ -63,14 +63,16 @@ public class FireWarriorAttack : MonoBehaviour
         }
 
         //playerControls.Player.Shoot.triggered
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && canAttack)
         {
+            canAttack = false;
             GameObject throwableWeapon = Instantiate(throwableObject, transform.position + new Vector3(transform.localScale.x * 0.2f, 0.35f), Quaternion.identity) as GameObject;
             Vector2 direction = new Vector2(transform.localScale.x, 0);
             throwableWeapon.transform.localScale = new Vector3(transform.localScale.x, 1, 1); // Ajustar la escala del objeto del disparo
             throwableWeapon.GetComponent<FireWarriorThrowableWeapon>().direction = direction;
             throwableWeapon.name = "ThrowableWeapon";
             throwableWeapon.AddComponent<DestroyOnInvisible>(); // Agregar el script DestroyOnInvisible al proyectil
+            StartCoroutine(AttackCooldown());
         }
     }
 

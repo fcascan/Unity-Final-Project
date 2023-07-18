@@ -9,14 +9,19 @@ public class ItemPickup : MonoBehaviour
 
     private float timeToAdd; // Tiempo que se agrega al recoger el item
 
+    private GameObject tiempo;
     private TimeManager timeManager;
-
     private void Start()
     {
-        timeManager = FindObjectOfType<TimeManager>();
+        tiempo = GameObject.FindGameObjectWithTag("Tiempo");
+        if (tiempo != null)
+        {
+            // Suscribirse al evento TimeAdded del TimeManager
+            timeManager = tiempo.GetComponent<TimeManager>;
+        }
     }
 
-private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
@@ -33,5 +38,13 @@ private void OnTriggerEnter2D(Collider2D other)
             Debug.Log("Seek and destroy");
             Destroy(this.gameObject);
         }
+    }
+
+    private void HandleTimeAdded(float timeAdded)
+    {
+        // Aquí puedes realizar cualquier acción necesaria al agregar tiempo al jugador
+        Debug.Log("Time added to player: " + timeAdded);
+
+        // Resto del código aquí
     }
 }

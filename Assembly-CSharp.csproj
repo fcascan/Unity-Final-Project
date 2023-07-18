@@ -113,14 +113,16 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\Fire Warrior\FireWarriorController2D.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemyDropItem.cs" />
-    <Compile Include="Assets\Scripts\Enemies\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Enemies\Enemy_old.cs" />
     <Compile Include="Assets\Scripts\MainMenu\MainMenuSoundController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\Scripts\Environment\Grass.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\Scripts\MainMenu\DontDestroyOnSelectedScenes.cs" />
+    <Compile Include="Assets\Scripts\Environment\PinchosDamage.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
+    <Compile Include="Assets\Scripts\Time.cs" />
     <Compile Include="Assets\Scripts\TimeManager.cs" />
     <Compile Include="Assets\Scripts\Environment\DestructibleObject.cs" />
     <Compile Include="Assets\Scripts\DrawCharacter\Attack.cs" />
@@ -140,8 +142,6 @@
     <Compile Include="Assets\Examples\Hero Knight - Pixel Art\Demo\DestroyEvent_HeroKnight.cs" />
     <Compile Include="Assets\Examples\PSD Logo Templates\Sample\IconPreview.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
-    <Compile Include="Assets\Scripts\Environment\PinchosDamage.cs" />
-    <Compile Include="Assets\Scripts\Time.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

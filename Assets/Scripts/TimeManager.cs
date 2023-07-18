@@ -3,9 +3,12 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class TimeManager : MonoBehaviour
 {
+    public event Action<float> TimeAdded; // Evento que se dispara cuando se agrega tiempo
+
     public float startingTime = 60f; // Tiempo inicial en segundos
     private TextMeshProUGUI timeText; // Referencia al componente Text para mostrar el tiempo restante
 
@@ -46,7 +49,11 @@ public class TimeManager : MonoBehaviour
     public void AddTime(float timeToAdd)
     {
         currentTime += timeToAdd;
+
+        // Disparar el evento TimeAdded con el valor de tiempo agregado
+        TimeAdded?.Invoke(timeToAdd);
     }
+
     private void UpdateTimeText()
     {
         if (timeText != null)
@@ -54,7 +61,7 @@ public class TimeManager : MonoBehaviour
             timeText.text = Mathf.Round(currentTime).ToString("0"); // Actualizar el texto del tiempo restante
         }
     }
-    
+
     private void OnDestroy()
     {
         // Guardar el tiempo actual en PlayerPrefs para que persista en las siguientes escenas
