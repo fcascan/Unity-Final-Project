@@ -49,7 +49,7 @@ public class Ally : MonoBehaviour
     private void FixedUpdate()
     {
         if (life <= 0f) {
-            StartCoroutine(DestroyEnemy());
+            Kill();
         }
         else {
             if (isHitted) {
@@ -62,7 +62,7 @@ public class Ally : MonoBehaviour
                 distToPlayerX = enemyPosition.x - transform.position.x;
                 distToPlayerY = enemyPosition.y - transform.position.y;
                 float distToPlayer = Mathf.Sqrt(Mathf.Pow(distToPlayerX, 2) + Mathf.Pow(distToPlayerY, 2));
-                Debug.Log("distToPlayer: (" + distToPlayer + ")");
+                //Debug.Log("distToPlayer: (" + distToPlayer + ")");
 
                 if (distToPlayer > maxFollowDistance) {
                     //Player fuera de alcance
@@ -257,7 +257,7 @@ public class Ally : MonoBehaviour
         animator.SetBool("IsDead", true);
         yield return new WaitForSeconds(0.5f);
         m_Rigidbody2D.velocity = new Vector2(0f, m_Rigidbody2D.velocity.y);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 
@@ -270,5 +270,10 @@ public class Ally : MonoBehaviour
         animator.SetBool("IsDashing", false);
         animator.SetBool("RangeAttack", false);
         animator.SetBool("IsWalking", false);
+    }
+
+    public void Kill ()
+    {
+        StartCoroutine(DestroyEnemy());
     }
 }

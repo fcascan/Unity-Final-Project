@@ -44,7 +44,7 @@ public class FireWarriorAttack : MonoBehaviour
         playerControls.Player.Attack.Disable();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         // Update is called once per frame
         if (playerControls.Player.Attack.triggered && canAttack)

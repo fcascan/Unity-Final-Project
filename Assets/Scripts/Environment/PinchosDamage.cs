@@ -19,5 +19,18 @@ public class PinchosDamage : MonoBehaviour
                 controller.Kill();
             }
         }
+        //Verificar colision con Enemigo
+        else if (collision.gameObject.CompareTag("Enemy"))
+        {
+            //Obtener componente Enemigo (ally)
+            Ally controller = collision.gameObject.GetComponent<Ally>();
+
+            // Verificar si se encontró el componente FireWarriorController2D
+            if (controller != null)
+            {
+                // Llamar al método Kill del componente FireWarriorController2D
+                controller.Kill();
+            }
+        }
     }
 }

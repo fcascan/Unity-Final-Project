@@ -1,13 +1,13 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TimeManager : MonoBehaviour
 {
     public float startingTime = 60f; // Tiempo inicial en segundos
-    public float minTimeToAdd = 5f; // Tiempo mínimo para agregar al matar un enemigo
-    public float maxTimeToAdd = 20f; // Tiempo máximo para agregar al matar un enemigo
-    public Text timeText; // Referencia al componente Text para mostrar el tiempo restante
+    private TextMeshProUGUI timeText; // Referencia al componente Text para mostrar el tiempo restante
 
     private float currentTime; // Tiempo actual restante
 
@@ -15,10 +15,15 @@ public class TimeManager : MonoBehaviour
     {
         // Inicializar el tiempo actual desde PlayerPrefs o el valor predeterminado
         currentTime = PlayerPrefs.GetFloat("Time", startingTime);
+        if (currentTime < startingTime)
+        {
+            currentTime = startingTime;
+        }
+        timeText = GetComponent<TextMeshProUGUI>();
         UpdateTimeText();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         // Reducir el tiempo restante
         currentTime -= Time.deltaTime;
@@ -27,6 +32,12 @@ public class TimeManager : MonoBehaviour
         {
             // Tiempo agotado, realizar acciones necesarias (por ejemplo, game over)
             currentTime = 0f;
+            FireWarriorController2D controller = GameObject.FindGameObjectWithTag("Player").GetComponent<FireWarriorController2D>();
+            if (controller != null)
+            {
+                // Llamar al método Kill del componente FireWarriorController2D
+                controller.Kill();
+            }
         }
 
         UpdateTimeText();
@@ -40,17 +51,10 @@ public class TimeManager : MonoBehaviour
     {
         if (timeText != null)
         {
-            timeText.text = Mathf.Round(currentTime).ToString(); // Actualizar el texto del tiempo restante
+            timeText.text = Mathf.Round(currentTime).ToString("0"); // Actualizar el texto del tiempo restante
         }
     }
-
-    public void AddTimeOnEnemyKill()
-    {
-        float timeToAdd = Random.Range(minTimeToAdd, maxTimeToAdd);
-        currentTime += timeToAdd;
-        UpdateTimeText();
-    }
-
+    
     private void OnDestroy()
     {
         // Guardar el tiempo actual en PlayerPrefs para que persista en las siguientes escenas

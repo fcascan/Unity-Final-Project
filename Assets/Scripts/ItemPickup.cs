@@ -4,23 +4,34 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
-    public float timeToAdd = 10f; // Tiempo que se agrega al recoger el item
+    public int minTimeToAdd = 5; // Tiempo mínimo a agregar al recoger el item
+    public int maxTimeToAdd = 20; // Tiempo máximo a agregar al recoger el item
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private float timeToAdd; // Tiempo que se agrega al recoger el item
+
+    private TimeManager timeManager;
+
+    private void Start()
+    {
+        timeManager = FindObjectOfType<TimeManager>();
+    }
+
+private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("Choque");
             // Obtener el componente TimeManager en el jugador
-            TimeManager timeManager = other.GetComponent<TimeManager>();
+            timeManager = other.GetComponent<TimeManager>();
 
-            if (timeManager != null)
-            {
-                // Agregar tiempo al jugador
-                timeManager.AddTime(timeToAdd);
+            // Agregar tiempo al jugador
+            // Generar un número aleatorio entre minTimeToAdd y maxTimeToAdd
+            timeToAdd = Random.Range(minTimeToAdd, maxTimeToAdd);
+            timeManager.AddTime(timeToAdd);
 
-                // Destruir el objeto del item
-                Destroy(gameObject);
-            }
+            // Destruir el objeto del item
+            Debug.Log("Seek and destroy");
+            Destroy(this.gameObject);
         }
     }
 }

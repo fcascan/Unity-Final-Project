@@ -59,7 +59,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\Scripts\MainMenu\AudioConfiguration.cs" />
-    <Compile Include="Assets\Scripts\Fire Warrior\PinchosDamage.cs" />
     <Compile Include="Assets\boclodider.cs" />
     <Compile Include="Assets\Scripts\MainMenu\AudioManager.cs" />
     <Compile Include="Assets\Scripts\EndParamBehaviour.cs" />
@@ -141,6 +140,8 @@
     <Compile Include="Assets\Examples\Hero Knight - Pixel Art\Demo\DestroyEvent_HeroKnight.cs" />
     <Compile Include="Assets\Examples\PSD Logo Templates\Sample\IconPreview.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
+    <Compile Include="Assets\Scripts\Environment\PinchosDamage.cs" />
+    <Compile Include="Assets\Scripts\Time.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
