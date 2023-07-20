@@ -36,8 +36,9 @@ public class Jefe : MonoBehaviour
             m_Rigidbody2D.AddForce(new Vector2(direction * 300f, 100f));
             if(life <= 0)
             {
-                animator.SetTrigger("Death");
-            }
+            animator.SetBool("isDead", true); // Activa el bool "isDead" para activar la animación de muerte.
+            Muerte(); // Llama a la función para eliminar el GameObject después de la animación.
+        }
     }
     public void Muerte()
     {
