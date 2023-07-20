@@ -5,7 +5,7 @@ using UnityEngine;
 public class HabilidadJefe : MonoBehaviour
 {
     private Animator animator;
-    [SerializeField] private float daño;
+    [SerializeField] private float daÃ±o;
     [SerializeField] private Vector2 dimensionesCaja;
     [SerializeField] private Transform posicionCaja;
     [SerializeField] private float tiempoDeVida;
@@ -27,7 +27,7 @@ public class HabilidadJefe : MonoBehaviour
         {
             if(colisiones.CompareTag("Player"))
             {
-                colisiones.GetComponent<FireWarriorController2D>().ApplyDamage(daño,Vector3.zero);
+                colisiones.GetComponent<FireWarriorController2D>().ApplyDamage(daÃ±o,Vector3.zero);
             }
         }
     }

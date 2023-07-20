@@ -13,7 +13,7 @@ public class Jefe : MonoBehaviour
     [Header("Ataque")]
     [SerializeField] private Transform ControladorAtaque;
     [SerializeField] private float radioAtaque;
-    [SerializeField] private float dañoAtaque;
+    [SerializeField] private float daÃ±oAtaque;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -58,7 +58,7 @@ public class Jefe : MonoBehaviour
         {
             if(colision.CompareTag("Player"))
             {
-                colision.GetComponent<FireWarriorController2D>().ApplyDamage(dañoAtaque, Vector3.zero);
+                colision.GetComponent<FireWarriorController2D>().ApplyDamage(daÃ±oAtaque, Vector3.zero);
             }
         }
     }
