@@ -44,8 +44,13 @@ public class FireWarriorController2D : MonoBehaviour
     private bool limitVelOnWallJump = false; //For limit wall jump distance with low fps
 
 
+	private float timeIne; // Tiempo que se agrega al recoger el item
+	private float timedown = 0f; // Tiempo que se agrega al recoger el item
 
-    public UnityEvent OnFallEvent;
+	public event Action<float> TimeUp; // Evento que se dispara cuando se recoje el ítem
+	public event Action<float> TimeDown; // Evento que se dispara cuando se recoje el ítem
+
+	public UnityEvent OnFallEvent;
     public UnityEvent OnLandEvent;
     public UnityEvent OnDeathEvent;
 
@@ -66,7 +71,15 @@ public class FireWarriorController2D : MonoBehaviour
 
         if (OnDeathEvent == null)
             OnDeathEvent = new UnityEvent();
-    }
+
+		TimeManager timeManager = FindObjectOfType<TimeManager>();
+		if (timeManager != null)
+		{
+			timeIne = life;
+			timeManager.TimeIne(timeIne);
+			TimeUp?.Invoke(timeIne);
+		}
+	}
 
 
     private void FixedUpdate()
@@ -308,6 +321,10 @@ public class FireWarriorController2D : MonoBehaviour
 			Vector2 damageDir = Vector3.Normalize(transform.position - position) * 40f ;
 			m_Rigidbody2D.velocity = Vector2.zero;
 			m_Rigidbody2D.AddForce(damageDir * 10);
+			TimeManager timeManager = FindObjectOfType<TimeManager>();
+			timedown = life;
+			timeManager.downTime(timedown);
+			TimeDown?.Invoke(timedown);
 			if (life <= 0)
 			{
 				StartCoroutine(WaitToDead());

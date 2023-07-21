@@ -4,10 +4,12 @@ using TMPro;
 
 public class TimeManager : MonoBehaviour
 {
+    public event Action<float> TimeMas; // Evento que se dispara cuando se agrega tiempo
+    public event Action<float> Timedown; // Evento que se dispara cuando se agrega tiempo
     public event Action<float> TimeAdded; // Evento que se dispara cuando se agrega tiempo
     public event Action TimeReset; // Evento que se dispara cuando el tiempo se resetea a 60
 
-    public float startingTime = 60f; // Tiempo inicial en segundos
+    public float startingTime; // Tiempo inicial en segundos
     private TextMeshProUGUI timeText; // Referencia al componente Text para mostrar el tiempo restante
 
     private float currentTime; // Tiempo actual restante
@@ -16,7 +18,7 @@ public class TimeManager : MonoBehaviour
     {
         // Inicializar el tiempo actual desde PlayerPrefs o el valor predeterminado
         currentTime = PlayerPrefs.GetFloat("Time", startingTime);
-        if (currentTime < 1)
+        if (currentTime != startingTime)
         {
             currentTime = startingTime;
         }
@@ -47,6 +49,20 @@ public class TimeManager : MonoBehaviour
         UpdateTimeText();
     }
 
+    public void TimeIne(float timeToAdd)
+    {
+        startingTime += timeToAdd;
+
+        // Disparar el evento TimeAdded con el valor de tiempo agregado
+        TimeMas?.Invoke(timeToAdd);
+    }
+    public void downTime(float timeToAdd)
+    {
+        currentTime = timeToAdd;
+
+        // Disparar el evento TimeAdded con el valor de tiempo agregado
+        Timedown?.Invoke(timeToAdd);
+    }
     public void AddTime(float timeToAdd)
     {
         currentTime += timeToAdd;
