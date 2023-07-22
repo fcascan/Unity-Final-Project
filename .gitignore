@@ -6,3 +6,5 @@ UserSettings/
 /Assembly-CSharp-Editor.csproj
 /Proyecto Final.sln
 /.vsconfig
+/Temp
+/.vs
