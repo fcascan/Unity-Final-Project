@@ -76,8 +76,6 @@ GameObject:
   - component: {fileID: 50249040782121326}
   - component: {fileID: 95077898361601450}
   - component: {fileID: 4928340560695649379}
-  - component: {fileID: 8309039521227130187}
-  - component: {fileID: 5332430743320357167}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Enemy
@@ -225,52 +223,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19daed33242bbb348a96213765c8bc8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 15
-  maxFollowDistance: 5
-  speed: 2
-  isInvincible: 0
-  dashForce: 5
-  enemy: {fileID: 0}
-  meleeDist: 0.85
-  rangeDist: 2
-  throwableObject: {fileID: 0}
-  damageValue: 1
---- !u!114 &8309039521227130187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1458107173046890}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fba604f8fb16ce24abb8275c4ac53990, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   life: 10
-  turnLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
+  maxFollowDistance: 4.5
+  meleeAttackDistance: 0.85
+  rangeAttackDistance: 2
   speed: 2
-  rangeDist: 4
-  meleeDist: 0
-  isInvincible: 0
-  player: {fileID: 0}
---- !u!114 &5332430743320357167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1458107173046890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aed3880530a185f4d9d1cd6272da003f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 1000013931470818, guid: 5c02591794acece409986647ed6329a7, type: 3}
-  minTimeToAdd: 5
-  maxTimeToAdd: 20
+  dashForce: 5
+  meleeDamage: 10
+  throwableObject: {fileID: 0}
+  dropPrefab: {fileID: 0}
 --- !u!1 &5286188233998929565
 GameObject:
   m_ObjectHideFlags: 0

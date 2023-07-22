@@ -22,8 +22,8 @@ public class PinchosDamage : MonoBehaviour
         //Verificar colision con Enemigo
         else if (collision.gameObject.CompareTag("Enemy"))
         {
-            //Obtener componente Enemigo (ally)
-            Ally controller = collision.gameObject.GetComponent<Ally>();
+            //Obtener componente Enemigo
+            EnemyBehaviour controller = collision.gameObject.GetComponent<EnemyBehaviour>();
 
             // Verificar si se encontró el componente FireWarriorController2D
             if (controller != null)
