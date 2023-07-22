@@ -8,6 +8,7 @@ TagManager:
   - Humo salto
   - Enemy
   - Tiempo
+  - JEFE
   layers:
   - Default
   - TransparentFX

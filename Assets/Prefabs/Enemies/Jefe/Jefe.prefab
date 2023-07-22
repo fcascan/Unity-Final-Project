@@ -170,11 +170,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Rigidbody2D: {fileID: 0}
-  fireWarriorPrefab: {fileID: 0}
+  fireWarriorPrefab: {fileID: 4660076192433278, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
   life: 100
   ControladorAtaque: {fileID: 7518091591746920885}
   radioAtaque: 0.3
   "da\xF1oAtaque": 20
+  victorySoundClip: {fileID: 8300000, guid: e04271a7a3cd1ec439331422d6f7d70e, type: 3}
+  victoryPanel: {fileID: 0}
 --- !u!1 &7518091591746920886
 GameObject:
   m_ObjectHideFlags: 0

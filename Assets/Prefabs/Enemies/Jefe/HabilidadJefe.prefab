@@ -124,7 +124,7 @@ MonoBehaviour:
   dimensionesCaja: {x: 0.5, y: 1}
   posicionCaja: {fileID: 3489522594599248935}
   tiempoDeVida: 2
-  fireWarriorPrefab: {fileID: 0}
+  fireWarriorPrefab: {fileID: 4660076192433278, guid: 50936cccdb69523458c1b42052ebafff, type: 3}
 --- !u!1 &1356080423252820052
 GameObject:
   m_ObjectHideFlags: 0

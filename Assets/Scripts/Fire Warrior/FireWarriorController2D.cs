@@ -30,7 +30,7 @@ public class FireWarriorController2D : MonoBehaviour
 	private bool oldWallSlidding = false; //If player is sliding in a wall in the previous frame
 	private float prevVelocityX = 0f;
 	private bool canCheck = false; //For check if player is wallsliding
-
+	[Header("vida")]
 	public float life = 10f; //Life of the player
 	public bool invincible = false; //If player can die
 	private bool canMove = true; //If player can move
@@ -42,6 +42,7 @@ public class FireWarriorController2D : MonoBehaviour
 	private float jumpWallStartX = 0;
 	private float jumpWallDistX = 0; //Distance between player and wall
     private bool limitVelOnWallJump = false; //For limit wall jump distance with low fps
+
 
 
 	private float timeIne; // Tiempo que se agrega al recoger el item
@@ -82,7 +83,7 @@ public class FireWarriorController2D : MonoBehaviour
 	}
 
 
-    private void FixedUpdate()
+	private void FixedUpdate()
 	{
 		bool wasGrounded = m_Grounded;
 		m_Grounded = false;
@@ -149,7 +150,7 @@ public class FireWarriorController2D : MonoBehaviour
 		}
 	}
 
-    public void Kill()
+	public void Kill()
     {
         if (!invincible)
         {
@@ -397,4 +398,5 @@ public class FireWarriorController2D : MonoBehaviour
         // Mostrar la escena de "GameOver"
         SceneManager.LoadSceneAsync("GameOver");
     }
+
 }

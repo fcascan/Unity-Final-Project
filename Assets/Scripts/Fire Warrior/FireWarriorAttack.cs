@@ -8,6 +8,11 @@ public class FireWarriorAttack : MonoBehaviour
     private PlayerInputActions playerControls;
     private Rigidbody2D m_Rigidbody2D;
 
+    [Header("Ataque")]
+    [SerializeField] private Transform ConAtaque;
+    [SerializeField] private float radioAtaque;
+    [SerializeField] private float dañoAtaque;
+    public Transform Jefe;
     //Config:
     public GameObject throwableObject;
     public Transform attackCheck;
@@ -60,6 +65,7 @@ public class FireWarriorAttack : MonoBehaviour
             attackNumber += 1;
             if (attackNumber % 3 == 0) attackNumber = 0;
             StartCoroutine(AttackCooldown());
+            Ataque();
         }
 
         //playerControls.Player.Shoot.triggered
@@ -81,6 +87,17 @@ public class FireWarriorAttack : MonoBehaviour
         yield return new WaitForSecondsRealtime(attackCooldownSecs);
         canAttack = true;
     }
+    public void Ataque()
+    {
+        Collider2D[] objetos = Physics2D.OverlapCircleAll(ConAtaque.position, radioAtaque);
+        foreach (Collider2D colision in objetos)
+        {
+            if (colision.CompareTag("JEFE"))
+            {
+                colision.GetComponent<Jefe>().ApplyDam(dañoAtaque);
+            }
+        }
+    }
 
     public void DoDashDamage()
     {
@@ -88,7 +105,7 @@ public class FireWarriorAttack : MonoBehaviour
         Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(attackCheck.position, 0.9f);
         for (int i = 0; i < collidersEnemies.Length; i++)
         {
-            if (collidersEnemies[i].gameObject.tag == "Enemy")
+            if (collidersEnemies[i].gameObject.tag == "JEFE")
             {
                 if (collidersEnemies[i].transform.position.x - transform.position.x < 0)
                 {
@@ -98,5 +115,10 @@ public class FireWarriorAttack : MonoBehaviour
                 cam.GetComponent<CameraFollow>().ShakeCamera();
             }
         }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(ConAtaque.position, radioAtaque);
     }
 }

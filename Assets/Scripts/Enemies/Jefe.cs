@@ -42,11 +42,9 @@ public class Jefe : MonoBehaviour
         animator.SetFloat("distanciaJugador", distanciaJugador);
     }
 
-    public void ApplyDamage(float damage)
+    public void ApplyDam(float damage)
     {
-        if (isDead) return; // Si el jefe ya ha muerto, no hace nada
 
-        animator.SetBool("Hit", true);
         float direction = damage / Mathf.Abs(damage);
         damage = Mathf.Abs(damage);
         life -= damage;
@@ -54,15 +52,7 @@ public class Jefe : MonoBehaviour
         m_Rigidbody2D.AddForce(new Vector2(direction * 300f, 100f));
         if (life <= 0)
         {
-            animator.SetBool("isDead", true); // Activa el bool "isDead" para activar la animación de muerte.
-            isDead = true;
-
-            
-            // Mostrar el cartel de "victoria" durante 20 segundos
-            victoryPanel.ShowVictoryPanel(20f);
-
-            // Después de 20 segundos, cargar el menú principal
-            StartCoroutine(LoadMainMenuAfterDelay(20f));
+            Muerte();
         }
     }
 
@@ -78,7 +68,7 @@ public class Jefe : MonoBehaviour
     {
         if (isDead) return; // Si el jefe ya ha muerto, no hace nada
 
-        animator.SetBool("isDead", true); // Activa el bool "isDead" para activar la animación de muerte.
+        animator.SetBool("Death", true); // Activa el bool "isDead" para activar la animación de muerte.
         isDead = true;
 
         // Reproducir el sonido de victoria directamente con AudioSource
@@ -86,7 +76,7 @@ public class Jefe : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(victorySoundClip, transform.position);
         }
-
+        Destroy(gameObject);
         // Mostrar el cartel de "victoria" durante 20 segundos
         victoryPanel.ShowVictoryPanel(20f);
 
