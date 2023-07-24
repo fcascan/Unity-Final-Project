@@ -120,7 +120,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0.15
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -142,8 +142,9 @@ MonoBehaviour:
   hasHit: 0
   speed: 10
   ConiAtaque: {fileID: 2611595287209100345}
-  radioAtaque: 0.3
-  "da\xF1oAtaque": 1
+  radioAtaque: 0.2
+  "da\xF1oAtaque": 5
+  lifetime: 3
 --- !u!114 &7152574282473709177
 MonoBehaviour:
   m_ObjectHideFlags: 0

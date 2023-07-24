@@ -11,7 +11,7 @@ public class FireWarriorThrowableWeapon : MonoBehaviour
 	[SerializeField] private Transform ConiAtaque;
 	[SerializeField] private float radioAtaque;
 	[SerializeField] private float dañoAtaque;
-
+	[SerializeField] private float lifetime;
 	// Start is called before the first frame update
 	void Start()
     {
@@ -35,6 +35,14 @@ public class FireWarriorThrowableWeapon : MonoBehaviour
 				colision.GetComponent<Jefe>().ApplyDam(dañoAtaque);
 			}
 		}
+		Collider2D[] odjetos = Physics2D.OverlapCircleAll(ConiAtaque.position, radioAtaque);
+		foreach (Collider2D colision in odjetos)
+		{
+			if (colision.CompareTag("Enemy"))
+			{
+				colision.GetComponent<EnemyBehaviour>().ApplyDam(dañoAtaque);
+			}
+		}
 	}
 	private void OnDrawGizmos()
 	{
@@ -46,7 +54,6 @@ public class FireWarriorThrowableWeapon : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Enemy")
 		{
-			collision.gameObject.SendMessage("ApplyDamage", Mathf.Sign(direction.x) * 2f);
 			Destroy(gameObject);
 		}
 		else if (collision.gameObject.tag != "Player")

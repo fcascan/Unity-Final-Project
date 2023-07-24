@@ -231,7 +231,7 @@
                 {
                     "name": "",
                     "id": "201aa2b5-4ebe-4f2c-bde7-348f12154da2",
-                    "path": "<Keyboard>/ctrl",
+                    "path": "<Keyboard>/j",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -396,7 +396,7 @@
                 {
                     "name": "",
                     "id": "725f96fd-fa0f-4670-bf71-a7d302800033",
-                    "path": "<Keyboard>/alt",
+                    "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

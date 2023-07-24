@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Tiempo
   - JEFE
+  - Enemy1
   layers:
   - Default
   - TransparentFX

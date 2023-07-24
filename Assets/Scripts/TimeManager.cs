@@ -4,16 +4,17 @@ using TMPro;
 
 public class TimeManager : MonoBehaviour
 {
+    public event Action<float> TimeVida;
     public event Action<float> TimeMas; // Evento que se dispara cuando se agrega tiempo
     public event Action<float> Timedown; // Evento que se dispara cuando se agrega tiempo
     public event Action<float> TimeAdded; // Evento que se dispara cuando se agrega tiempo
     public event Action TimeReset; // Evento que se dispara cuando el tiempo se resetea a 60
-
+    private float timeLife; // Tiempo que se agrega al recoger el item
     public float startingTime; // Tiempo inicial en segundos
     private TextMeshProUGUI timeText; // Referencia al componente Text para mostrar el tiempo restante
 
     private float currentTime; // Tiempo actual restante
-
+    private float timedown;
     private void Start()
     {
         // Inicializar el tiempo actual desde PlayerPrefs o el valor predeterminado
@@ -30,6 +31,10 @@ public class TimeManager : MonoBehaviour
     {
         // Reducir el tiempo restante
         currentTime -= Time.deltaTime;
+        FireWarriorController2D timeManager = FindObjectOfType<FireWarriorController2D>();
+        timedown = currentTime;
+        timeManager.VidaTiempo(timedown);
+        TimeVida?.Invoke(timedown);
 
         if (currentTime <= 0f)
         {
@@ -58,7 +63,7 @@ public class TimeManager : MonoBehaviour
     }
     public void downTime(float timeToAdd)
     {
-        currentTime = timeToAdd;
+        currentTime -= timeToAdd;
 
         // Disparar el evento TimeAdded con el valor de tiempo agregado
         Timedown?.Invoke(timeToAdd);

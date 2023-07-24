@@ -6,11 +6,13 @@ public class ThrowableProjectile : MonoBehaviour
 {
 	public Vector2 direction;
 	public bool hasHit = false;
-	public float speed = 15f;
+	[SerializeField] public float speed = 15f;
+	[SerializeField] public float daño = 2f;
+	[SerializeField] public float radioAtaque;
 	public GameObject owner;
-
-    // Update is called once per frame
-    void FixedUpdate()
+	[SerializeField] private Transform ConAtaque;
+	// Update is called once per frame
+	void FixedUpdate()
     {
 		if ( !hasHit)
 		GetComponent<Rigidbody2D>().velocity = direction * speed;
@@ -18,19 +20,19 @@ public class ThrowableProjectile : MonoBehaviour
 
 	void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.gameObject.tag == "Player")
+		Collider2D[] odjetos = Physics2D.OverlapCircleAll(ConAtaque.position, radioAtaque);
+		foreach (Collider2D colisiones in odjetos)
 		{
-			collision.gameObject.GetComponent<CharacterController2D>().ApplyDamage(2f, transform.position);
-			Destroy(gameObject);
+			if (colisiones.CompareTag("Player"))
+			{
+				colisiones.GetComponent<FireWarriorController2D>().ApplyDamage(daño, transform.position);
+				Destroy(gameObject);
+			}
 		}
-		else if ( owner != null && collision.gameObject != owner && collision.gameObject.tag == "Enemy" )
-		{
-			collision.gameObject.SendMessage("ApplyDamage", Mathf.Sign(direction.x) * 2f);
-			Destroy(gameObject);
-		}
-		else if (collision.gameObject.tag != "Enemy" && collision.gameObject.tag != "Player")
-		{
-			Destroy(gameObject);
-		}
+	}
+	private void OnDrawGizmos()
+	{
+		Gizmos.color = Color.green;
+		Gizmos.DrawWireSphere(ConAtaque.position, radioAtaque);
 	}
 }

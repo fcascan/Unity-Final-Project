@@ -31,7 +31,7 @@ public class FireWarriorController2D : MonoBehaviour
 	private float prevVelocityX = 0f;
 	private bool canCheck = false; //For check if player is wallsliding
 	[Header("vida")]
-	public float life = 10f; //Life of the player
+	public float life = 100f; //Life of the player
 	public bool invincible = false; //If player can die
 	private bool canMove = true; //If player can move
 
@@ -50,7 +50,7 @@ public class FireWarriorController2D : MonoBehaviour
 
 	public event Action<float> TimeUp; // Evento que se dispara cuando se recoje el ítem
 	public event Action<float> TimeDown; // Evento que se dispara cuando se recoje el ítem
-
+	public event Action<float> TimeVida;
 	public UnityEvent OnFallEvent;
     public UnityEvent OnLandEvent;
     public UnityEvent OnDeathEvent;
@@ -59,9 +59,35 @@ public class FireWarriorController2D : MonoBehaviour
     [System.Serializable]
 	public class BoolEvent : UnityEvent<bool> { }
 
-    private void Awake()
+
+	private void SavePlayerLife()
+	{
+		PlayerPrefs.SetFloat("PlayerLife", life);
+		PlayerPrefs.Save();
+	}
+
+	// Método para cargar la vida guardada desde PlayerPrefs
+	private void LoadPlayerLife()
+	{
+		if (PlayerPrefs.HasKey("PlayerLife"))
+		{
+			life = PlayerPrefs.GetFloat("PlayerLife");
+		}
+	}
+
+	// Método para reiniciar la vida del jugador (se puede llamar desde cualquier parte)
+	private void ResetPlayerLife()
+	{
+		life = 100f; // Puedes ajustar el valor inicial de la vida aquí si es necesario
+		SavePlayerLife();
+	}
+
+	private void Awake()
     {
-        m_Rigidbody2D = GetComponent<Rigidbody2D>();
+
+		LoadPlayerLife();
+
+		m_Rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
         if (OnFallEvent == null)
@@ -80,11 +106,14 @@ public class FireWarriorController2D : MonoBehaviour
 			timeManager.TimeIne(timeIne);
 			TimeUp?.Invoke(timeIne);
 		}
+
 	}
 
 
 	private void FixedUpdate()
 	{
+
+
 		bool wasGrounded = m_Grounded;
 		m_Grounded = false;
 
@@ -158,8 +187,8 @@ public class FireWarriorController2D : MonoBehaviour
             canMove = false;
             invincible = true;
             GetComponent<FireWarriorAttack>().enabled = false;
-
-            StartCoroutine(WaitForDeathAnimation());
+			ResetPlayerLife();
+			StartCoroutine(WaitForDeathAnimation());
 
         }
     }
@@ -177,7 +206,8 @@ public class FireWarriorController2D : MonoBehaviour
         TimeManager timeManager = FindObjectOfType<TimeManager>();
         if (timeManager != null)
         {
-            timeManager.ResetTime();
+			ResetPlayerLife();
+			timeManager.ResetTime();
         }
 
         // Mostrar la escena de "GameOver"
@@ -323,11 +353,12 @@ public class FireWarriorController2D : MonoBehaviour
 			m_Rigidbody2D.velocity = Vector2.zero;
 			m_Rigidbody2D.AddForce(damageDir * 10);
 			TimeManager timeManager = FindObjectOfType<TimeManager>();
-			timedown = life;
+			timedown = damage;
 			timeManager.downTime(timedown);
 			TimeDown?.Invoke(timedown);
 			if (life <= 0)
 			{
+				ResetPlayerLife();
 				StartCoroutine(WaitToDead());
 			}
 			else
@@ -336,6 +367,14 @@ public class FireWarriorController2D : MonoBehaviour
 				StartCoroutine(MakeInvincible(1f));
 			}
 		}
+	}
+	public void VidaTiempo(float timeToAdd)
+	{
+		life = timeToAdd;
+		
+		// Disparar el evento TimeAdded con el valor de tiempo agregado
+		TimeVida?.Invoke(timeToAdd);
+		SavePlayerLife();
 	}
 
 	IEnumerator DashCooldown()
@@ -387,6 +426,12 @@ public class FireWarriorController2D : MonoBehaviour
 
 	IEnumerator WaitToDead()
 	{
+		TimeManager timeManager = FindObjectOfType<TimeManager>();
+		if (timeManager != null)
+		{
+			ResetPlayerLife();
+			timeManager.ResetTime();
+		}
 		animator.SetBool("IsDead", true);
 		canMove = false;
 		invincible = true;
@@ -398,5 +443,6 @@ public class FireWarriorController2D : MonoBehaviour
         // Mostrar la escena de "GameOver"
         SceneManager.LoadSceneAsync("GameOver");
     }
+
 
 }

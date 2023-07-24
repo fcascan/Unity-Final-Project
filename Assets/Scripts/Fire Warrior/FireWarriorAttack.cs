@@ -19,7 +19,6 @@ public class FireWarriorAttack : MonoBehaviour
     public Animator animator;
     public GameObject cam;
 
-    [SerializeField] private float dmgValue = 4;
     [SerializeField] private float attackCooldownSecs = 0.25f;
 
     //States:
@@ -42,11 +41,13 @@ public class FireWarriorAttack : MonoBehaviour
     private void OnEnable()
     {
         playerControls.Player.Attack.Enable();
+        playerControls.Player.Shoot.Enable();
     }
 
     private void OnDisable()
     {
         playerControls.Player.Attack.Disable();
+        playerControls.Player.Shoot.Disable();
     }
 
     void FixedUpdate()
@@ -68,8 +69,8 @@ public class FireWarriorAttack : MonoBehaviour
             Ataque();
         }
 
-        //playerControls.Player.Shoot.triggered
-        if (Input.GetKeyDown(KeyCode.Q) && canAttack)
+        //playerControls.Player.Shoot.triggered / Input.GetKeyDown(KeyCode.Q)
+        if (playerControls.Player.Shoot.triggered && canAttack)
         {
             canAttack = false;
             GameObject throwableWeapon = Instantiate(throwableObject, transform.position + new Vector3(transform.localScale.x * 0.2f, 0.35f), Quaternion.identity) as GameObject;
@@ -97,25 +98,16 @@ public class FireWarriorAttack : MonoBehaviour
                 colision.GetComponent<Jefe>().ApplyDam(dañoAtaque);
             }
         }
-    }
-
-    public void DoDashDamage()
-    {
-        dmgValue = Mathf.Abs(dmgValue);
-        Collider2D[] collidersEnemies = Physics2D.OverlapCircleAll(attackCheck.position, 0.9f);
-        for (int i = 0; i < collidersEnemies.Length; i++)
+        foreach (Collider2D colision in objetos)
         {
-            if (collidersEnemies[i].gameObject.tag == "JEFE")
+            if (colision.CompareTag("Enemy"))
             {
-                if (collidersEnemies[i].transform.position.x - transform.position.x < 0)
-                {
-                    dmgValue = -dmgValue;
-                }
-                collidersEnemies[i].gameObject.SendMessage("ApplyDamage", dmgValue);
-                cam.GetComponent<CameraFollow>().ShakeCamera();
+                colision.GetComponent<EnemyBehaviour>().ApplyDam(dañoAtaque);
             }
         }
     }
+
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;

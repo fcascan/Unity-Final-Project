@@ -16,6 +16,7 @@ public class Jefe : MonoBehaviour
     [SerializeField] private float radioAtaque;
     [SerializeField] private float dañoAtaque;
 
+
     [Header("Sonido de Victoria")]
     public AudioClip victorySoundClip;
 
@@ -25,8 +26,9 @@ public class Jefe : MonoBehaviour
     // Referencia al script que controla el cartel de "victoria"
     public VictoryPanelController victoryPanel;
 
+
     // Variable para controlar si el jefe ya ha muerto
-    private bool isDead = false;
+
 
     void Start()
     {
@@ -36,7 +38,7 @@ public class Jefe : MonoBehaviour
         audioManager = AudioManager.Instance; // Obtener la instancia del AudioManager
     }
 
-    void Update()
+    void FixedUpdate()
     {
         float distanciaJugador = Vector2.Distance(transform.position, fireWarriorPrefab.position);
         animator.SetFloat("distanciaJugador", distanciaJugador);
@@ -44,7 +46,7 @@ public class Jefe : MonoBehaviour
 
     public void ApplyDam(float damage)
     {
-
+        animator.SetBool("Hit", true);
         float direction = damage / Mathf.Abs(damage);
         damage = Mathf.Abs(damage);
         life -= damage;
@@ -63,25 +65,24 @@ public class Jefe : MonoBehaviour
         // Cargar el menú principal (Main Menu)
         SceneManager.LoadScene("MainMenu");
     }
-
+    // Método para activar el GameObject
     public void Muerte()
     {
-        if (isDead) return; // Si el jefe ya ha muerto, no hace nada
 
         animator.SetBool("Death", true); // Activa el bool "isDead" para activar la animación de muerte.
-        isDead = true;
+
 
         // Reproducir el sonido de victoria directamente con AudioSource
         if (victorySoundClip != null)
         {
             AudioSource.PlayClipAtPoint(victorySoundClip, transform.position);
         }
-        Destroy(gameObject);
+
         // Mostrar el cartel de "victoria" durante 20 segundos
-        victoryPanel.ShowVictoryPanel(20f);
+        victoryPanel.ShowVictoryPanel(2f);
 
         // Después de 20 segundos, cargar el menú principal
-        StartCoroutine(LoadMainMenuAfterDelay(20f));
+        StartCoroutine(LoadMainMenuAfterDelay(2f));
     }
 
     public void MirarJugador()

@@ -29,7 +29,7 @@ public class PinchosDamage : MonoBehaviour
             if (controller != null)
             {
                 // Llamar al método Kill del componente FireWarriorController2D
-                controller.Kill();
+                controller.Muerte();
             }
         }
     }
